@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2</title>
+</head>
+<body>
+    <script src="jquery-3.7.1.min"></script>
+
+    <input type="text" id="textBox1" placeholder="Enter a number:">
+    <input type="text" id="textBox2" placeholder="Enter a number:">
+    <button id="addition">+</button><button id="substraction">-</button><button id="multiply">*</button><button id="division">/</button>
+    <br>
+    <h1 id="output">0</h1>
+
+    <script>
+        $(document).ready(function () {
+            // Function to check if both text boxes contain valid integers
+            function validateInputs() {
+                var num1 = $("#textBox1").val();
+                var num2 = $("#textBox2").val();
+                
+                // Check if both text boxes have values and can be converted to integers
+                if (num1 !== "" && num2 !== "" && !isNaN(num1) && !isNaN(num2) && Number.isInteger(parseFloat(num1)) && Number.isInteger(parseFloat(num2))) {
+                    // Enable buttons if both inputs are valid integers
+                    $("button").prop("disabled", false);
+                } else {
+                    // Disable buttons if any of the inputs is invalid
+                    $("button").prop("disabled", true);
+                }
+            }
+
+            // Validate inputs on any change in the text boxes
+            $("#textBox1, #textBox2").on("input", function () {
+                validateInputs();
+            });
+
+            // Addition
+            $("#addition").click(function () {
+                var num1 = parseInt($("#textBox1").val());
+                var num2 = parseInt($("#textBox2").val());
+                $("#output").text(num1 + num2);
+            });
+
+            // Subtraction
+            $("#substraction").click(function () {
+                var num1 = parseInt($("#textBox1").val());
+                var num2 = parseInt($("#textBox2").val());
+                $("#output").text(num1 - num2);
+            });
+
+            // Multiplication
+            $("#multiply").click(function () {
+                var num1 = parseInt($("#textBox1").val());
+                var num2 = parseInt($("#textBox2").val());
+                $("#output").text(num1 * num2);
+            });
+
+            // Division
+            $("#division").click(function () {
+                var num1 = parseInt($("#textBox1").val());
+                var num2 = parseInt($("#textBox2").val());
+                if (num2 !== 0) {
+                    $("#output").text(num1 / num2);
+                } else {
+                    $("#output").text("Cannot divide by zero");
+                }
+            });
+
+            // Initial check to disable buttons when the page loads
+            validateInputs();
+        });
+    </script>
+</body>
+</html>

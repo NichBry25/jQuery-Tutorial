@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1</title>
+    <style>
+        .error{
+            border-color: red;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <script src="jquery-3.7.1.min"></script>
+    
+    <input type="text" id="myInput" placeholder="Enter number here.">
+    <button id="myButton">Submit</button>
+
+    <script>
+        $("#myInput").blur(function(){
+            var BoxValue = $("#myInput").val();
+
+            if (BoxValue > 10){
+                $("#myInput").addClass("error");
+            } 
+            else{
+                $("#myInput").removeClass("error");
+            }
+        });
+    </script>
+</body>
+</html>
